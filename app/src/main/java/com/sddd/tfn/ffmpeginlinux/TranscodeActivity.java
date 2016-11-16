@@ -37,6 +37,7 @@ public class TranscodeActivity extends AppCompatActivity {
     private TranscodeService mRemoteService;
     private ITranscodeAidlInterface aidlInterface;
     private final String basePath = "/storage/emulated/0/mydata/vivo";
+    private final String targetPath = basePath + File.separator + "outout222.mp4";
     private final String[] commands = {
             "ffmpeg",
             "-i",
@@ -45,7 +46,7 @@ public class TranscodeActivity extends AppCompatActivity {
 //            "-b", "0.5M",
 //            "-s","720x1080",
 //            "-r", "24",
-            basePath + File.separator + "outout222.mp4",
+            targetPath,
     };
 
     @Override
@@ -70,7 +71,7 @@ public class TranscodeActivity extends AppCompatActivity {
     @OnClick(R.id.transcode_io_thread)
     public void transcode() {
         mWaitRL.setVisibility(View.VISIBLE);
-
+        FileUtils.resetFile(targetPath);
 
         Observable.just(commands)
                 .map(new Func1<String[], Integer>() {
