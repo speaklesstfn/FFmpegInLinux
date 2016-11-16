@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">FFmpegInLinux</string>
+    <string name="start_transcode">Start Transcode</string>
+    <string name="transcode_remote_process">Transcode Remote Process</string>
+    <string name="transcode_io_thread">Transcode IO Thread</string>
+</resources>
