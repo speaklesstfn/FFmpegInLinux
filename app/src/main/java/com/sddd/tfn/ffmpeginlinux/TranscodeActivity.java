@@ -36,16 +36,27 @@ public class TranscodeActivity extends AppCompatActivity {
 
     private TranscodeService mRemoteService;
     private ITranscodeAidlInterface aidlInterface;
-    private final String basePath = "/storage/emulated/0/mydata/vivo";
-    private final String targetPath = basePath + File.separator + "outout222.mp4";
+    private final String basePath = "/storage/emulated/0/mydata";
+    private final String fileName = "video_04";
+    private final String bitps = "ori";
+//    private final String bitps = "1M";
+//        private final String bitps = "0.5M";
+//    private final String bitps = "0.2M";
+//private final String resolution = "ori";
+    private final String resolution = "720x1080";
+private final String frameRate = "ori";
+//    private final String frameRate = "24";
+    private final String originPath = basePath + File.separator + "origin" + File.separator
+            + fileName + ".mp4";
+    private final String targetPath = basePath + File.separator + "transcode" + File.separator
+            + fileName + "_linux_" + bitps + "_" + resolution + "_" + frameRate + ".mp4";
     private final String[] commands = {
             "ffmpeg",
             "-i",
-            basePath + File.separator + "video_20161111_164706.mp4",
-//            basePath + File.separator + "1479263099280.mp4",
-//            "-b", "0.5M",
-//            "-s","720x1080",
-//            "-r", "24",
+            originPath,
+//            "-b", bitps,
+            "-s",resolution,
+//            "-r", frameRate,
             targetPath,
     };
 
@@ -118,7 +129,8 @@ public class TranscodeActivity extends AppCompatActivity {
             List<String> cmds = Arrays.asList(commands);
             try {
                 aidlInterface.transcode(cmds);
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
