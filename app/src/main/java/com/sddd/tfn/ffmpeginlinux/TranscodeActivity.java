@@ -36,27 +36,26 @@ public class TranscodeActivity extends AppCompatActivity {
 
     private TranscodeService mRemoteService;
     private ITranscodeAidlInterface aidlInterface;
-    private final String basePath = "/storage/emulated/0/mydata";
-    private final String fileName = "video_04";
-    private final String bitps = "ori";
+    private final String basePath = "/storage/emulated/0/testdir/";
+    private final String fileName = "05";
+    //        private final String bitps = "ori";
 //    private final String bitps = "1M";
-//        private final String bitps = "0.5M";
-//    private final String bitps = "0.2M";
-//private final String resolution = "ori";
-    private final String resolution = "720x1080";
-private final String frameRate = "ori";
-//    private final String frameRate = "24";
-    private final String originPath = basePath + File.separator + "origin" + File.separator
-            + fileName + ".mp4";
-    private final String targetPath = basePath + File.separator + "transcode" + File.separator
-            + fileName + "_linux_" + bitps + "_" + resolution + "_" + frameRate + ".mp4";
+    private final String bitps = "0.5M";
+    //    private final String bitps = "0.6M";
+//    private final String resolution = "ori";
+    private final String resolution = "272x480";
+    //    private final String frameRate = "ori";
+    private final String frameRate = "24";
+    private final String originPath = basePath + fileName + "_in.mp4";
+    private final String targetPath = basePath + fileName + "_out_linux_" + bitps + "_" + resolution + "_" + frameRate + ".mp4";
     private final String[] commands = {
             "ffmpeg",
             "-i",
             originPath,
-//            "-b", bitps,
-            "-s",resolution,
-//            "-r", frameRate,
+            "-b", bitps,
+            "-s", resolution,
+            "-r", frameRate,
+            "-y",
             targetPath,
     };
 
