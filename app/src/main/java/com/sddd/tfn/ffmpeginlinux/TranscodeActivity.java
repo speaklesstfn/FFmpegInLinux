@@ -55,6 +55,7 @@ public class TranscodeActivity extends AppCompatActivity {
             "-b", bitps,
             "-s", resolution,
             "-r", frameRate,
+            "-acodec","copy",
             "-y",
             targetPath,
     };
